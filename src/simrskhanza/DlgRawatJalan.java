@@ -94,10 +94,8 @@ import rekammedis.RMHasilEndoskopiHidung;
 import rekammedis.RMHasilEndoskopiTelinga;
 import rekammedis.RMHasilPemeriksaanEKG;
 import rekammedis.RMHasilPemeriksaanEcho;
-import rekammedis.RMHasilPemeriksaanEchoPediatrik;
 import rekammedis.RMHasilPemeriksaanOCT;
 import rekammedis.RMHasilPemeriksaanSlitLamp;
-import rekammedis.RMHasilPemeriksaanTreadmill;
 import rekammedis.RMHasilPemeriksaanUSG;
 import rekammedis.RMHasilPemeriksaanUSGGynecologi;
 import rekammedis.RMHasilPemeriksaanUSGNeonatus;
@@ -132,7 +130,6 @@ import rekammedis.RMPenilaianAwalMedisRalanBedah;
 import rekammedis.RMPenilaianAwalMedisRalanBedahMulut;
 import rekammedis.RMPenilaianAwalMedisRalanDewasa;
 import rekammedis.RMPenilaianAwalMedisRalanGeriatri;
-import rekammedis.RMPenilaianAwalMedisRalanJantung;
 import rekammedis.RMPenilaianAwalMedisRalanKandungan;
 import rekammedis.RMPenilaianAwalMedisRalanKulitDanKelamin;
 import rekammedis.RMPenilaianAwalMedisRalanMata;
@@ -143,7 +140,6 @@ import rekammedis.RMPenilaianAwalMedisRalanPenyakitDalam;
 import rekammedis.RMPenilaianAwalMedisRalanPsikiatrik;
 import rekammedis.RMPenilaianAwalMedisRalanRehabMedik;
 import rekammedis.RMPenilaianAwalMedisRalanTHT;
-import rekammedis.RMPenilaianAwalMedisRalanUrologi;
 import rekammedis.RMPenilaianBayiBaruLahir;
 import rekammedis.RMPenilaianDerajatDehidrasi;
 import rekammedis.RMPenilaianFisioterapi;
@@ -1518,6 +1514,41 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel83 = new widget.Label();
         panelDiagnosa1 = new laporan.PanelDiagnosa();
         internalFrame8 = new widget.InternalFrame();
+        // 2 Oktober 2025
+        internalFrame9 = new widget.InternalFrame();
+        PanelMedik = new javax.swing.JPanel();
+        panelGlassMedik = new widget.panelisi();
+        // Label Pemeriksaan Rehab Medik
+        LabelAnamnesa = new widget.Label();
+        LabelPemeriksaanFisik = new widget.Label();
+        LabelDiagnosisMedis = new widget.Label();
+        LabelDiagnosisFungsi = new widget.Label();
+        LabelPemeriksaanPenunjang = new widget.Label();
+        LabelTatalaksana = new widget.Label(); 
+        LabelGoalOfTreatment = new widget.Label(); 
+        LabelPermintaanTerapi = new widget.Label(); 
+        LabelAnjuran = new widget.Label();
+        LabelEvaluasiMedik = new widget.Label(); 
+        LabelKesimpulan = new widget.Label(); 
+        LabelRekomendasi = new widget.Label(); 
+        LabelSuspekPenyakit = new widget.Label();
+        
+        // Input Pemeriksaan Rehab Medik
+        TAnamnesa = new widget.TextBox();
+        TPemeriksaanFisik = new widget.TextBox();
+        TDiagnosisMedis   = new widget.TextBox();
+        TDiagnosisFungsi = new widget.TextBox();
+        TPemeriksaanPenunjang = new widget.TextBox(); 
+        TTatalaksana = new widget.TextBox(); 
+        TGoalOfTreatment = new widget.TextBox(); 
+        TPermintaanTerapi = new widget.TextBox(); 
+        TAnjuran = new widget.TextBox();
+        TEvaluasiMedik = new widget.TextBox(); 
+        TKesimpulan = new widget.TextBox(); 
+        TRekomendasi = new widget.TextBox(); 
+        TSuspekPenyakit = new widget.TextBox();
+        // update label
+        
         PanelInput3 = new javax.swing.JPanel();
         ChkInput3 = new widget.CekBox();
         panelGlass15 = new widget.panelisi();
@@ -2234,6 +2265,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         TabRawat.addTab("Penanganan Dokter & Petugas", internalFrame4);
 
+        // Awal Panel Pemeriksaan
         internalFrame5.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         internalFrame5.setName("internalFrame5"); 
@@ -2659,6 +2691,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         internalFrame5.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
         TabRawat.addTab("Pemeriksaan", internalFrame5);
+        // Akhir Panel Pemeriksaan
 
         internalFrame6.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3035,8 +3068,11 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         internalFrame6.add(PanelInput1, java.awt.BorderLayout.PAGE_START);
 
+        // TAB MENU PEMERIKSAAN OBSTETRI
         TabRawat.addTab("Pemeriksaan Obstetri", internalFrame6);
 
+        
+        // Awal Panel Pemeriksaan Ginekologi
         internalFrame7.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         internalFrame7.setName("internalFrame7"); 
@@ -3101,6 +3137,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelGlass14.add(jLabel35);
         jLabel35.setBounds(0, 10, 70, 23);
 
+        // 2 Oktober 2025
         TInspeksiVulva.setHighlighter(null);
         TInspeksiVulva.setName("TInspeksiVulva"); 
         TInspeksiVulva.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -3384,11 +3421,15 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         internalFrame7.add(PanelInput2, java.awt.BorderLayout.PAGE_START);
 
         TabRawat.addTab("Pemeriksaan Ginekologi", internalFrame7);
+        // Akhir Panel Pemeriksaan Ginekologi        
 
+        // Awal Panel Diagnosa
         panelDiagnosa1.setBorder(null);
         panelDiagnosa1.setName("panelDiagnosa1"); 
         TabRawat.addTab("Diagnosa", panelDiagnosa1);
+        // Akhir Panel Diagnosa
 
+        // Awal Panel Catatan Dokter
         internalFrame8.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame8.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         internalFrame8.setName("internalFrame8"); 
@@ -3503,6 +3544,150 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         internalFrame8.add(Scroll11, java.awt.BorderLayout.CENTER);
 
         TabRawat.addTab("Catatan Dokter", internalFrame8);
+        // Akhir Panel Catatan Dokter
+        
+        // 1 November 2025
+        // Edit pertama Pemeriksaan Rehab Medik
+        // Menambahkan form baru
+        
+        // Awal Panel Pemeriksaan Medik
+        // Frame
+        internalFrame9.setBackground(new java.awt.Color(235, 255, 235));
+        internalFrame9.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        internalFrame9.setName("internalFrame9"); 
+        internalFrame9.setLayout(new java.awt.BorderLayout(1, 1));  
+
+        // Panel utama
+        PanelMedik.setName("PanelInput2");
+        PanelMedik.setOpaque(false);
+        PanelMedik.setPreferredSize(new java.awt.Dimension(500, 200));
+        PanelMedik.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+
+        // Panel isi dengan GridBagLayout
+        panelGlassMedik.setName("panelGlassMedik"); 
+        panelGlassMedik.setLayout(new java.awt.GridBagLayout());
+
+        java.awt.GridBagConstraints gbc = new java.awt.GridBagConstraints();
+        gbc.insets = new java.awt.Insets(10, 10, 5, 10);
+        gbc.anchor = java.awt.GridBagConstraints.FIRST_LINE_START; // mulai pojok kiri atas
+
+        // === Field 1: Anamnesa ===
+        LabelAnamnesa.setText("Anamnesa :");
+        gbc.gridx = 0; gbc.gridy = 0;
+        panelGlassMedik.add(LabelAnamnesa, gbc);
+
+        TAnamnesa.setPreferredSize(new java.awt.Dimension(200, 23)); // batas lebar
+        gbc.gridx = 1; gbc.gridy = 0;
+        panelGlassMedik.add(TAnamnesa, gbc);
+
+        // === Field 2: PemeriksaanFisik ===
+        LabelPemeriksaanFisik.setText("Pemeriksaan Fisik :");
+        gbc.gridx = 0; gbc.gridy = 1;
+        panelGlassMedik.add(LabelPemeriksaanFisik, gbc);
+
+        TPemeriksaanFisik.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 1;
+        panelGlassMedik.add(TPemeriksaanFisik, gbc);
+
+        // === Field 3: Diagnosis Medis ===
+        LabelDiagnosisMedis.setText("Diagnosis Medis :");
+        gbc.gridx = 0; gbc.gridy = 2;
+        panelGlassMedik.add(LabelDiagnosisMedis, gbc);
+
+        TDiagnosisMedis.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 2;
+        panelGlassMedik.add(TDiagnosisMedis, gbc);
+        
+        // === Field 4: Diagnosis Fungsi ===
+        LabelDiagnosisFungsi.setText("Diagnosis Fungsi :");
+        gbc.gridx = 0; gbc.gridy = 3;
+        panelGlassMedik.add(LabelDiagnosisFungsi, gbc);
+
+        TDiagnosisFungsi.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 3;
+        panelGlassMedik.add(TDiagnosisFungsi, gbc);
+        
+        // === Field 5: Pemeriksaan Penunjang ===
+        LabelPemeriksaanPenunjang.setText("Pemeriksaan Penunjang :");
+        gbc.gridx = 0; gbc.gridy = 4;
+        panelGlassMedik.add(LabelPemeriksaanPenunjang, gbc);
+
+        TPemeriksaanPenunjang.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 4;
+        panelGlassMedik.add(TPemeriksaanPenunjang, gbc);
+        
+        // === Field 6: Tatalaksana ===
+        LabelTatalaksana.setText("Tatalaksana :");
+        gbc.gridx = 0; gbc.gridy = 5;
+        panelGlassMedik.add(LabelTatalaksana, gbc);
+
+        TTatalaksana.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 5;
+        panelGlassMedik.add(TTatalaksana, gbc);
+        
+        // === Field 7: Goal of Treatment ===
+        LabelGoalOfTreatment.setText("Goal of Treatment :");
+        gbc.gridx = 0; gbc.gridy = 6;
+        panelGlassMedik.add(LabelGoalOfTreatment, gbc);
+
+        TGoalOfTreatment.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 6;
+        panelGlassMedik.add(TGoalOfTreatment, gbc);
+        
+        // === Field 8: Permintaan Terapi ===
+        LabelPermintaanTerapi.setText("Permintaan Terapi :");
+        gbc.gridx = 0; gbc.gridy = 7;
+        panelGlassMedik.add(LabelPermintaanTerapi, gbc);
+
+        TPermintaanTerapi.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 7;
+        panelGlassMedik.add(TPermintaanTerapi, gbc);
+        
+        // === Field 9: Evaluasi Medik ===
+        LabelEvaluasiMedik.setText("Evaluasi :");
+        gbc.gridx = 0; gbc.gridy = 8;
+        panelGlassMedik.add(LabelEvaluasiMedik, gbc);
+
+        TEvaluasiMedik.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 8;
+        panelGlassMedik.add(TEvaluasiMedik, gbc);
+        
+        // === Field 10: Kesimpulan ===
+        LabelKesimpulan.setText("Kesimpulan :");
+        gbc.gridx = 0; gbc.gridy = 9;
+        panelGlassMedik.add(LabelKesimpulan, gbc);
+
+        TKesimpulan.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 9;
+        panelGlassMedik.add(TKesimpulan, gbc);
+        
+        // === Field 11: Rekomendasi ===
+        LabelRekomendasi.setText("Rekomendasi :");
+        gbc.gridx = 0; gbc.gridy = 10;
+        panelGlassMedik.add(LabelRekomendasi, gbc);
+
+        TRekomendasi.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 10;
+        panelGlassMedik.add(TRekomendasi, gbc);
+        
+        // === Field 12: Suspek Penyakit ===
+        LabelSuspekPenyakit.setText("Suspek Penyakit Akibat Kerja :");
+        gbc.gridx = 0; gbc.gridy = 11;
+        panelGlassMedik.add(LabelSuspekPenyakit, gbc);
+
+        TSuspekPenyakit.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 11;
+        panelGlassMedik.add(TSuspekPenyakit, gbc);
+
+        // Masukkan panel ke frame
+        PanelMedik.add(panelGlassMedik);
+        internalFrame9.add(PanelMedik, java.awt.BorderLayout.CENTER);
+
+        // Tambahkan ke Tab
+        TabRawat.addTab("Pemeriksaan Rehab Medik", internalFrame9);
+        // Akhir panel pemeriksaan Medik
+        
+        //TabRawat.addTab("Pemeriksaan Rehab Medik", DialogPemeriksaanRehapMedik);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 
@@ -10304,76 +10489,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
     
-    private void BtnAwalMedisJantungActionPerformed(java.awt.event.ActionEvent evt) {
-        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            TCari.requestFocus();
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            RMPenilaianAwalMedisRalanJantung form=new RMPenilaianAwalMedisRalanJantung(null,false);
-            form.isCek();
-            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            form.emptTeks();
-            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }
-    
-    private void BtnAwalMedisUrologiActionPerformed(java.awt.event.ActionEvent evt) {
-        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            TCari.requestFocus();
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            RMPenilaianAwalMedisRalanUrologi form=new RMPenilaianAwalMedisRalanUrologi(null,false);
-            form.isCek();
-            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            form.emptTeks();
-            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }
-    
-    private void BtnHasilPemeriksaanTreadmillActionPerformed(java.awt.event.ActionEvent evt) {                                                       
-        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            TCari.requestFocus();
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            RMHasilPemeriksaanTreadmill form=new RMHasilPemeriksaanTreadmill(null,false);
-            form.isCek();
-            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            form.emptTeks();
-            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
-            form.tampil();
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }
-    
-    private void BtnHasilPemeriksaanECHOPediatrikActionPerformed(java.awt.event.ActionEvent evt) {                                                       
-        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
-            TCari.requestFocus();
-        }else{
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            RMHasilPemeriksaanEchoPediatrik form=new RMHasilPemeriksaanEchoPediatrik(null,false);
-            form.isCek();
-            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            form.emptTeks();
-            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
-            form.tampil();
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }
-    
     /**
     * @param args the command line arguments
     */
@@ -10620,6 +10735,19 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.InternalFrame internalFrame6;
     private widget.InternalFrame internalFrame7;
     private widget.InternalFrame internalFrame8;
+    // update 1 Oktober 2025
+    // berhasil membuat tab baru 11:22 WIB
+    // private update.DlgPemeriksaanRehapMedik DialogPemeriksaanRehapMedik; // <- Diaglog yang akan digunakan Pemeriksaan Rehap Medik
+    private widget.InternalFrame internalFrame9; // <- Frame Pemeriksaan Rehab Medik
+    private javax.swing.JPanel PanelMedik;
+    private widget.panelisi panelGlassMedik;
+    private widget.Label LabelAnamnesa, LabelPemeriksaanFisik, LabelDiagnosisMedis, LabelDiagnosisFungsi,
+            LabelPemeriksaanPenunjang, LabelTatalaksana, LabelGoalOfTreatment, LabelPermintaanTerapi, LabelAnjuran,
+            LabelEvaluasiMedik, LabelKesimpulan, LabelRekomendasi, LabelSuspekPenyakit;
+    private widget.TextBox TAnamnesa, TPemeriksaanFisik, TDiagnosisMedis, TDiagnosisFungsi,
+            TPemeriksaanPenunjang, TTatalaksana, TGoalOfTreatment, TPermintaanTerapi, TAnjuran,
+            TEvaluasiMedik, TKesimpulan, TRekomendasi, TSuspekPenyakit;
+    // update variabel
     private widget.Label jLabel10;
     private widget.Label jLabel11;
     private widget.Label jLabel12;
@@ -10696,7 +10824,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JSeparator jSeparator5;
     private widget.TextBox kdptg;
     private widget.TextBox kdptg2;
-    private laporan.PanelDiagnosa panelDiagnosa1;
+    private laporan.PanelDiagnosa panelDiagnosa1; // <- file view terletak pada laporan.PanelDiagnosa
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass12;
@@ -10733,8 +10861,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                           BtnLaporanTindakan,BtnPelaksanaanInformasiEdukasi,BtnLayananKedokteranFisikRehabilitasi,BtnSkriningKesehatanGigiMulutBalita,BtnSkriningAnemia,BtnSkriningHipertensi,BtnSkriningKesehatanPenglihatan,
                           BtnCatatanObservasiHemodialisa,BtnSkriningKesehatanGigiMulutDewasa,BtnSkriningRisikoKankerServiks,BtnCatatanCairanHemodialisa,BtnSkriningKesehatanGigiMulutLansia,BtnSkriningIndraPendengaran,
                           BtnCatatanPengkajianPaskaOperasi,BtnSkriningFrailtySyndrome,BtnCatatanObservasiBayi,BtnChecklistKesiapanAnestesi,BtnHasilPemeriksaanSlitLamp,BtnHasilPemeriksaanOCT,BtnSkriningInstrumenACRS,
-                          BtnChecklistKriteriaMasukNICU,BtnChecklistKriteriaMasukPICU,BtnSkriningInstrumenMentalEmosional,BtnSkriningInstrumenAMT,BtnSkriningPneumoniaSeverityIndex,BtnAwalMedisJantung,BtnAwalMedisUrologi,
-                          BtnHasilPemeriksaanTreadmill,BtnHasilPemeriksaanECHOPediatrik;   
+                          BtnChecklistKriteriaMasukNICU,BtnChecklistKriteriaMasukPICU,BtnSkriningInstrumenMentalEmosional,BtnSkriningInstrumenAMT,BtnSkriningPneumoniaSeverityIndex;   
     
     private void tampilDr() {
         Valid.tabelKosong(tabModeDr);
@@ -11194,14 +11321,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         if(akses.getpenilaian_awal_medis_ralan_bedah()==true){
             tinggi=tinggi+24;
         }
-        BtnAwalMedisJantung.setVisible(akses.getpenilaian_awal_medis_ralan_jantung()); 
-        if(akses.getpenilaian_awal_medis_ralan_jantung()==true){
-            tinggi=tinggi+24;
-        }
-        BtnAwalMedisUrologi.setVisible(akses.getpenilaian_awal_medis_ralan_urologi()); 
-        if(akses.getpenilaian_awal_medis_ralan_urologi()==true){
-            tinggi=tinggi+24;
-        }
         BtnPenilaianPsikolog.setVisible(akses.getpenilaian_psikologi()); 
         if(akses.getpenilaian_psikologi()==true){
             tinggi=tinggi+24;
@@ -11499,10 +11618,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         if(akses.gethasil_pemeriksaan_ekg()==true){
             tinggi=tinggi+24;
         }
-        BtnHasilPemeriksaanTreadmill.setVisible(akses.gethasil_pemeriksaan_treadmill()); 
-        if(akses.gethasil_pemeriksaan_treadmill()==true){
-            tinggi=tinggi+24;
-        }
         BtnHasilPemeriksaanSlitLamp.setVisible(akses.gethasil_pemeriksaan_slit_lamp()); 
         if(akses.gethasil_pemeriksaan_slit_lamp()==true){
             tinggi=tinggi+24;
@@ -11513,10 +11628,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
         BtnHasilPemeriksaanECHO.setVisible(akses.gethasil_pemeriksaan_echo()); 
         if(akses.gethasil_pemeriksaan_echo()==true){
-            tinggi=tinggi+24;
-        }
-        BtnHasilPemeriksaanECHOPediatrik.setVisible(akses.gethasil_pemeriksaan_echo_pediatrik()); 
-        if(akses.gethasil_pemeriksaan_echo_pediatrik()==true){
             tinggi=tinggi+24;
         }
         BtnPenatalaksanaanTerapiOkupasi.setVisible(akses.getpenatalaksanaan_terapi_okupasi()); 
@@ -12533,6 +12644,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         LCount.setText(""+TabModeTindakan3.getRowCount());
     }
     
+    // tambil data
     private void TampilkanData(){
         switch (TabRawat.getSelectedIndex()) {
             case 0:
@@ -13033,19 +13145,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanEKG.setRoundRect(false);
         BtnHasilPemeriksaanEKG.addActionListener(this::BtnHasilPemeriksaanEKGActionPerformed);
         
-        BtnHasilPemeriksaanTreadmill = new widget.Button();
-        BtnHasilPemeriksaanTreadmill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
-        BtnHasilPemeriksaanTreadmill.setText("Hasil Pemeriksaan Treadmill");
-        BtnHasilPemeriksaanTreadmill.setFocusPainted(false);
-        BtnHasilPemeriksaanTreadmill.setFont(new java.awt.Font("Tahoma", 0, 11)); 
-        BtnHasilPemeriksaanTreadmill.setGlassColor(new java.awt.Color(255, 255, 255));
-        BtnHasilPemeriksaanTreadmill.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        BtnHasilPemeriksaanTreadmill.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        BtnHasilPemeriksaanTreadmill.setName("BtnHasilPemeriksaanTreadmill");
-        BtnHasilPemeriksaanTreadmill.setPreferredSize(new java.awt.Dimension(190, 23));
-        BtnHasilPemeriksaanTreadmill.setRoundRect(false);
-        BtnHasilPemeriksaanTreadmill.addActionListener(this::BtnHasilPemeriksaanTreadmillActionPerformed);
-        
         BtnHasilPemeriksaanSlitLamp = new widget.Button();
         BtnHasilPemeriksaanSlitLamp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanSlitLamp.setText("Hasil Pemeriksaan Slit Lamp");
@@ -13084,19 +13183,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanECHO.setPreferredSize(new java.awt.Dimension(190, 23));
         BtnHasilPemeriksaanECHO.setRoundRect(false);
         BtnHasilPemeriksaanECHO.addActionListener(this::BtnHasilPemeriksaanECHOActionPerformed);
-        
-        BtnHasilPemeriksaanECHOPediatrik = new widget.Button();
-        BtnHasilPemeriksaanECHOPediatrik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
-        BtnHasilPemeriksaanECHOPediatrik.setText("Hasil ECHO Pediatrik");
-        BtnHasilPemeriksaanECHOPediatrik.setFocusPainted(false);
-        BtnHasilPemeriksaanECHOPediatrik.setFont(new java.awt.Font("Tahoma", 0, 11)); 
-        BtnHasilPemeriksaanECHOPediatrik.setGlassColor(new java.awt.Color(255, 255, 255));
-        BtnHasilPemeriksaanECHOPediatrik.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        BtnHasilPemeriksaanECHOPediatrik.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        BtnHasilPemeriksaanECHOPediatrik.setName("BtnHasilPemeriksaanECHOPediatrik");
-        BtnHasilPemeriksaanECHOPediatrik.setPreferredSize(new java.awt.Dimension(190, 23));
-        BtnHasilPemeriksaanECHOPediatrik.setRoundRect(false);
-        BtnHasilPemeriksaanECHOPediatrik.addActionListener(this::BtnHasilPemeriksaanECHOPediatrikActionPerformed);
         
         BtnPenatalaksanaanTerapiOkupasi = new widget.Button();
         BtnPenatalaksanaanTerapiOkupasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
@@ -13683,32 +13769,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnSkriningDiabetesMelitus.setRoundRect(false);
         BtnSkriningDiabetesMelitus.addActionListener(this::BtnSkriningDiabetesMelitusActionPerformed);
         
-        BtnAwalMedisJantung = new widget.Button();
-        BtnAwalMedisJantung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
-        BtnAwalMedisJantung.setText("Awal Medis Jantung");
-        BtnAwalMedisJantung.setFocusPainted(false);
-        BtnAwalMedisJantung.setFont(new java.awt.Font("Tahoma", 0, 11)); 
-        BtnAwalMedisJantung.setGlassColor(new java.awt.Color(255, 255, 255));
-        BtnAwalMedisJantung.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        BtnAwalMedisJantung.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        BtnAwalMedisJantung.setName("BtnAwalMedisJantung"); 
-        BtnAwalMedisJantung.setPreferredSize(new java.awt.Dimension(190, 23));
-        BtnAwalMedisJantung.setRoundRect(false);
-        BtnAwalMedisJantung.addActionListener(this::BtnAwalMedisJantungActionPerformed);
-        
-        BtnAwalMedisUrologi = new widget.Button();
-        BtnAwalMedisUrologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
-        BtnAwalMedisUrologi.setText("Awal Medis Urologi");
-        BtnAwalMedisUrologi.setFocusPainted(false);
-        BtnAwalMedisUrologi.setFont(new java.awt.Font("Tahoma", 0, 11)); 
-        BtnAwalMedisUrologi.setGlassColor(new java.awt.Color(255, 255, 255));
-        BtnAwalMedisUrologi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        BtnAwalMedisUrologi.setMargin(new java.awt.Insets(1, 1, 1, 1));
-        BtnAwalMedisUrologi.setName("BtnAwalMedisUrologi"); 
-        BtnAwalMedisUrologi.setPreferredSize(new java.awt.Dimension(190, 23));
-        BtnAwalMedisUrologi.setRoundRect(false);
-        BtnAwalMedisUrologi.addActionListener(this::BtnAwalMedisUrologiActionPerformed);
-        
         BtnLaporanTindakan = new widget.Button();
         BtnLaporanTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png"))); 
         BtnLaporanTindakan.setText("Laporan Tindakan");
@@ -13846,8 +13906,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         FormMenu.add(BtnAwalMedisGeriatri);
         FormMenu.add(BtnAwalMedisKulitKelamin);
         FormMenu.add(BtnAwalMedisParu);
-        FormMenu.add(BtnAwalMedisJantung);
-        FormMenu.add(BtnAwalMedisUrologi);
         FormMenu.add(BtnAwalMedisRehabMedik);
         FormMenu.add(BtnAwalMedisHemodialisa);
         FormMenu.add(BtnRujukKeluar);
@@ -13904,10 +13962,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         FormMenu.add(BtnHasilPemeriksaanUSGGynecologi);
         FormMenu.add(BtnHasilPemeriksaanEKG);
         FormMenu.add(BtnHasilPemeriksaanECHO);
-        FormMenu.add(BtnHasilPemeriksaanECHOPediatrik);
         FormMenu.add(BtnHasilPemeriksaanSlitLamp);
         FormMenu.add(BtnHasilPemeriksaanOCT);
-        FormMenu.add(BtnHasilPemeriksaanTreadmill);
         FormMenu.add(BtnHasilEndoskopiFaringLaring);
         FormMenu.add(BtnHasilEndoskopiHidung);
         FormMenu.add(BtnHasilEndoskopiTelinga);
@@ -14177,6 +14233,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         LCount.setText(""+TabModeCatatan.getRowCount());
                     }
                 }
+                break;
+            case 8:
+                // Fungsi Simpan pada database
+                System.out.println("Tersimpan");
                 break;
             default:
                 break;
