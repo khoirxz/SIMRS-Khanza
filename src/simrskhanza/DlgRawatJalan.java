@@ -1564,10 +1564,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput = new widget.PanelBiasa();
         jLabel3 = new widget.Label();
         TNoRw = new widget.TextBox();
-        TNoRM = new widget.TextBox();
+        TNoRM = new widget.TextBox(); // <-- saya mengambil No.RM disini
         TPasien = new widget.TextBox();
         jLabel23 = new widget.Label();
-        DTPTgl = new widget.Tanggal();
+        DTPTgl = new widget.Tanggal(); // <-- saya mengambil tanggal disini
         cmbJam = new widget.ComboBox();
         cmbMnt = new widget.ComboBox();
         cmbDtk = new widget.ComboBox();
@@ -3643,40 +3643,49 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         gbc.gridx = 1; gbc.gridy = 7;
         panelGlassMedik.add(TPermintaanTerapi, gbc);
         
-        // === Field 9: Evaluasi Medik ===
-        LabelEvaluasiMedik.setText("Evaluasi :");
+        // === Field 9: Permintaan Terapi ===
+        LabelAnjuran.setText("Permintaan Terapi :");
         gbc.gridx = 0; gbc.gridy = 8;
+        panelGlassMedik.add(LabelAnjuran, gbc);
+
+        TAnjuran.setPreferredSize(new java.awt.Dimension(200, 23));
+        gbc.gridx = 1; gbc.gridy = 8;
+        panelGlassMedik.add(TAnjuran, gbc);
+        
+        // === Field 10: Evaluasi Medik ===
+        LabelEvaluasiMedik.setText("Evaluasi :");
+        gbc.gridx = 0; gbc.gridy = 9;
         panelGlassMedik.add(LabelEvaluasiMedik, gbc);
 
         TEvaluasiMedik.setPreferredSize(new java.awt.Dimension(200, 23));
-        gbc.gridx = 1; gbc.gridy = 8;
+        gbc.gridx = 1; gbc.gridy = 9;
         panelGlassMedik.add(TEvaluasiMedik, gbc);
         
-        // === Field 10: Kesimpulan ===
+        // === Field 11: Kesimpulan ===
         LabelKesimpulan.setText("Kesimpulan :");
-        gbc.gridx = 0; gbc.gridy = 9;
+        gbc.gridx = 0; gbc.gridy = 10;
         panelGlassMedik.add(LabelKesimpulan, gbc);
 
         TKesimpulan.setPreferredSize(new java.awt.Dimension(200, 23));
-        gbc.gridx = 1; gbc.gridy = 9;
+        gbc.gridx = 1; gbc.gridy = 10;
         panelGlassMedik.add(TKesimpulan, gbc);
         
-        // === Field 11: Rekomendasi ===
+        // === Field 12: Rekomendasi ===
         LabelRekomendasi.setText("Rekomendasi :");
-        gbc.gridx = 0; gbc.gridy = 10;
+        gbc.gridx = 0; gbc.gridy = 11;
         panelGlassMedik.add(LabelRekomendasi, gbc);
 
         TRekomendasi.setPreferredSize(new java.awt.Dimension(200, 23));
-        gbc.gridx = 1; gbc.gridy = 10;
+        gbc.gridx = 1; gbc.gridy = 11;
         panelGlassMedik.add(TRekomendasi, gbc);
         
-        // === Field 12: Suspek Penyakit ===
+        // === Field 13: Suspek Penyakit ===
         LabelSuspekPenyakit.setText("Suspek Penyakit Akibat Kerja :");
-        gbc.gridx = 0; gbc.gridy = 11;
+        gbc.gridx = 0; gbc.gridy = 12;
         panelGlassMedik.add(LabelSuspekPenyakit, gbc);
 
         TSuspekPenyakit.setPreferredSize(new java.awt.Dimension(200, 23));
-        gbc.gridx = 1; gbc.gridy = 11;
+        gbc.gridx = 1; gbc.gridy = 12;
         panelGlassMedik.add(TSuspekPenyakit, gbc);
 
         // Masukkan panel ke frame
@@ -10747,6 +10756,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.TextBox TAnamnesa, TPemeriksaanFisik, TDiagnosisMedis, TDiagnosisFungsi,
             TPemeriksaanPenunjang, TTatalaksana, TGoalOfTreatment, TPermintaanTerapi, TAnjuran,
             TEvaluasiMedik, TKesimpulan, TRekomendasi, TSuspekPenyakit;
+    private widget.Tanggal TglAsuhan;
     // update variabel
     private widget.Label jLabel10;
     private widget.Label jLabel11;
@@ -14234,9 +14244,20 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     }
                 }
                 break;
+            // Simpan Pemeriksaan Rehab Medik 2 Oktober 2025
             case 8:
                 // Fungsi Simpan pada database
-                System.out.println("Tersimpan");
+                if (Sequel.menyimpantf("layanan_kedokteran_fisik_rehabilitasi","?,?,?,?,?,?,?,?,?,?,?,?,?,?,'Belum Selesai'","No.Rawat",14,new String[]{
+                    TNoRw.getText(),"2025-06-23 13:22:08","D0000004",
+                    "Tidak","-",TAnamnesa.getText(),TPemeriksaanFisik.getText(),TDiagnosisMedis.getText(), 
+                    TDiagnosisFungsi.getText(),TTatalaksana.getText(),TAnjuran.getText(),TEvaluasiMedik.getText(),"Ya", 
+                    TSuspekPenyakit.getText()
+                    })==true) {
+                    System.out.println("Data Tersimpan");
+                } else {
+                    System.out.println("Gagal menyimpan data");
+                }
+                
                 break;
             default:
                 break;
