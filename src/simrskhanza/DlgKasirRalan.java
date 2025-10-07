@@ -294,7 +294,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             "Kode Dokter","Dokter Dituju","No.RM","Pasien",
             "Poliklinik","Penanggung Jawab","Alamat P.J.","Hubungan P.J.",
             "Biaya Reg","Jenis Bayar","Status","No.Rawat","Tanggal",
-            "Jam","No.Reg","Status Bayar","Stts Poli","Kd PJ","Kd Poli","No.Telp Pasien"}){
+            "Jam","No.Reg","Status Bayar","Stts Poli","Kd PJ","Kd Poli","No.Telp Pasien", "No. SEP", "No. Surat"}){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         tbKasirRalan.setModel(tabModekasir);
@@ -9082,7 +9082,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
         if(TabRawat.getSelectedIndex()==0){
             tampilkasir();
+            System.out.println("Tampil Kasir 1");
         }else if(TabRawat.getSelectedIndex()==1){
+            System.out.println("Tampil Kasir 2");
             tampilkasir2();
         }
     }//GEN-LAST:event_TabRawatMouseClicked
@@ -15893,18 +15895,42 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 @Override
                 protected Void doInBackground() {
                     try{   
+                        // Perubahan 7 Oktober 2025
+                        // Penambahan Kolom No. SEP dan No. Surat
                         semua=caripenjab.equals("")&&CrPoli.getText().trim().equals("")&&CrPtg.getText().trim().equals("")&&cmbStatus.getSelectedItem().toString().equals("Semua")&&cmbStatusBayar.getSelectedItem().toString().equals("Semua")&&TCari.getText().trim().equals("");
-                        pskasir=koneksi.prepareStatement("select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,"+
-                            "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,poliklinik.nm_poli,"+
-                            "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts,penjab.png_jawab,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur, "+
-                            "reg_periksa.status_bayar,reg_periksa.status_poli,reg_periksa.kd_pj,reg_periksa.kd_poli,pasien.no_tlp "+
-                            "from reg_periksa inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                            "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli inner join penjab on reg_periksa.kd_pj=penjab.kd_pj where  "+
-                            "reg_periksa.tgl_registrasi between ? and ? and reg_periksa.status_lanjut='Ralan' "+tampildiagnosa+
-                            (semua?"":"and reg_periksa.kd_pj like ? and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and reg_periksa.stts like ? and reg_periksa.status_bayar like ? and "+
-                            "(reg_periksa.no_reg like ? or reg_periksa.no_rawat like ? or reg_periksa.tgl_registrasi like ? or reg_periksa.kd_dokter like ? or dokter.nm_dokter like ? or reg_periksa.no_rkm_medis like ? or pasien.nm_pasien like ? or poliklinik.nm_poli like ? or "+
-                            "reg_periksa.p_jawab like ? or penjab.png_jawab like ? or reg_periksa.almt_pj like ? or reg_periksa.status_bayar like ? or reg_periksa.hubunganpj like ?) ")+terbitsep+
-                            "order by "+order);
+                        pskasir=koneksi.prepareStatement(
+                        "select " +
+                        "  reg_periksa.no_reg, reg_periksa.no_rawat, reg_periksa.tgl_registrasi, reg_periksa.jam_reg, " +
+                        "  reg_periksa.kd_dokter, dokter.nm_dokter, reg_periksa.no_rkm_medis, pasien.nm_pasien, poliklinik.nm_poli, " +
+                        "  reg_periksa.p_jawab, reg_periksa.almt_pj, reg_periksa.hubunganpj, reg_periksa.biaya_reg, " +
+                        "  reg_periksa.stts, penjab.png_jawab, " +
+                        "  concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) as umur, " +
+                        "  reg_periksa.status_bayar, reg_periksa.status_poli, reg_periksa.kd_pj, reg_periksa.kd_poli, pasien.no_tlp, " +
+                        "  bs.no_sep as no_sep, bsk.no_surat as no_surat " +   // <<< kolom baru
+                        "from reg_periksa " +
+                        "inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter " +
+                        "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis " +
+                        "inner join poliklinik on reg_periksa.kd_poli=poliklinik.kd_poli " +
+                        "inner join penjab on reg_periksa.kd_pj=penjab.kd_pj " +
+                        // <<< LEFT JOIN supaya baris tanpa SEP/surat tetap muncul
+                        "left join bridging_sep bs on bs.no_rawat = reg_periksa.no_rawat " +
+                        "left join bridging_surat_kontrol_bpjs bsk on bsk.no_sep = bs.no_sep " +
+                        "where reg_periksa.tgl_registrasi between ? and ? " +
+                        "  and reg_periksa.status_lanjut='Ralan' " + tampildiagnosa +
+                        (semua ? "" :
+                          " and reg_periksa.kd_pj like ? and poliklinik.nm_poli like ? and dokter.nm_dokter like ? " +
+                          " and reg_periksa.stts like ? and reg_periksa.status_bayar like ? and " +
+                          " (reg_periksa.no_reg like ? or reg_periksa.no_rawat like ? or reg_periksa.tgl_registrasi like ? or " +
+                          "  reg_periksa.kd_dokter like ? or dokter.nm_dokter like ? or reg_periksa.no_rkm_medis like ? or " +
+                          "  pasien.nm_pasien like ? or poliklinik.nm_poli like ? or reg_periksa.p_jawab like ? or penjab.png_jawab like ? or " +
+                          "  reg_periksa.almt_pj like ? or reg_periksa.status_bayar like ? or reg_periksa.hubunganpj like ?) "
+                        ) + terbitsep +
+                        " order by " + order
+                    );
+                        
+                        System.out.println("=== DEBUG SQL (kasir) ===");
+                        System.out.println(pskasir.toString());  // tampilkan prepared statement (akan tunjuk query & param index)
+                        System.out.println("==========================");
                         try{
                             pskasir.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
                             pskasir.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
@@ -15927,17 +15953,35 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                                 pskasir.setString(18,"%"+TCari.getText().trim()+"%");
                                 pskasir.setString(19,"%"+TCari.getText().trim()+"%");
                                 pskasir.setString(20,"%"+TCari.getText().trim()+"%");
+                                
                             }
 
                             rskasir=pskasir.executeQuery();
                             i=0;
                             while(rskasir.next()){
                                 Object[] row = new Object[]{
-                                    rskasir.getString(5),rskasir.getString(6),rskasir.getString(7),rskasir.getString(8)+" ("+rskasir.getString("umur")+")",
-                                    rskasir.getString(9),rskasir.getString(10),rskasir.getString(11),rskasir.getString(12),Valid.SetAngka(rskasir.getDouble(13)),
-                                    rskasir.getString("png_jawab"),rskasir.getString(14),rskasir.getString("no_rawat"),rskasir.getString("tgl_registrasi"),
-                                    rskasir.getString("jam_reg"),rskasir.getString(1),rskasir.getString("status_bayar"),rskasir.getString("status_poli"),
-                                    rskasir.getString("kd_pj"),rskasir.getString("kd_poli"),rskasir.getString("no_tlp")
+                                    rskasir.getString(5),             // kd_dokter
+                                    rskasir.getString(6),             // nm_dokter
+                                    rskasir.getString(7),             // no_rkm_medis
+                                    rskasir.getString(8)+" ("+rskasir.getString("umur")+")", // pasien (dengan umur)
+                                    rskasir.getString(9),             // nm_poli
+                                    rskasir.getString(10),            // p_jawab
+                                    rskasir.getString(11),            // almt_pj
+                                    rskasir.getString(12),            // hubunganpj
+                                    Valid.SetAngka(rskasir.getDouble(13)), // biaya_reg
+                                    rskasir.getString("png_jawab"),
+                                    rskasir.getString(14),            // stts
+                                    rskasir.getString("no_rawat"),
+                                    rskasir.getString("tgl_registrasi"),
+                                    rskasir.getString("jam_reg"),
+                                    rskasir.getString(1),             // no_reg
+                                    rskasir.getString("status_bayar"),
+                                    rskasir.getString("status_poli"),
+                                    rskasir.getString("kd_pj"),
+                                    rskasir.getString("kd_poli"),
+                                    rskasir.getString("no_tlp"),
+                                    rskasir.getString("no_sep"),      // <<< No. SEP (bisa null)
+                                    rskasir.getString("no_surat")     // <<< No. Surat Kontrol (bisa null)
                                 };
                                 i++;
                                 SwingUtilities.invokeLater(() -> tabModekasir.addRow(row));
