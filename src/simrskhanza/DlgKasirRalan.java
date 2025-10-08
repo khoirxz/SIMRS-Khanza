@@ -290,11 +290,12 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(885,674);
 
+        // Tabel Header
         tabModekasir=new DefaultTableModel(null,new String[]{
             "Kode Dokter","Dokter Dituju","No.RM","Pasien",
             "Poliklinik","Penanggung Jawab","Alamat P.J.","Hubungan P.J.",
             "Biaya Reg","Jenis Bayar","Status","No.Rawat","Tanggal",
-            "Jam","No.Reg","Status Bayar","Stts Poli","Kd PJ","Kd Poli","No.Telp Pasien", "No. SEP", "No. Surat"}){
+            "Jam","No.Reg","Status Bayar","Stts Poli","Kd PJ","Kd Poli","No.Telp Pasien", "No. SEP", "No. Surat Kontrol", "Tanggal Kontrol"}){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         tbKasirRalan.setModel(tabModekasir);
@@ -15896,7 +15897,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 protected Void doInBackground() {
                     try{   
                         // Perubahan 7 Oktober 2025
-                        // Penambahan Kolom No. SEP dan No. Surat
+                        // Penambahan Kolom No. SEP, No. Surat Kontrol, Tanggal Kontrol
                         semua=caripenjab.equals("")&&CrPoli.getText().trim().equals("")&&CrPtg.getText().trim().equals("")&&cmbStatus.getSelectedItem().toString().equals("Semua")&&cmbStatusBayar.getSelectedItem().toString().equals("Semua")&&TCari.getText().trim().equals("");
                         pskasir=koneksi.prepareStatement(
                         "select " +
@@ -15906,7 +15907,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         "  reg_periksa.stts, penjab.png_jawab, " +
                         "  concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur) as umur, " +
                         "  reg_periksa.status_bayar, reg_periksa.status_poli, reg_periksa.kd_pj, reg_periksa.kd_poli, pasien.no_tlp, " +
-                        "  bs.no_sep as no_sep, bsk.no_surat as no_surat " +   // <<< kolom baru
+                        "  bs.no_sep as no_sep, bsk.no_surat as no_surat, bsk.tgl_rencana as tgl_rencana " +   // <<< kolom baru
                         "from reg_periksa " +
                         "inner join dokter on reg_periksa.kd_dokter=dokter.kd_dokter " +
                         "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis " +
@@ -15928,9 +15929,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         " order by " + order
                     );
                         
-                        System.out.println("=== DEBUG SQL (kasir) ===");
-                        System.out.println(pskasir.toString());  // tampilkan prepared statement (akan tunjuk query & param index)
-                        System.out.println("==========================");
+//                        System.out.println("=== DEBUG SQL (kasir) ===");
+//                        System.out.println(pskasir.toString());  // tampilkan prepared statement (akan tunjuk query & param index)
+//                        System.out.println("==========================");
                         try{
                             pskasir.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+""));
                             pskasir.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+""));
@@ -15981,7 +15982,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                                     rskasir.getString("kd_poli"),
                                     rskasir.getString("no_tlp"),
                                     rskasir.getString("no_sep"),      // <<< No. SEP (bisa null)
-                                    rskasir.getString("no_surat")     // <<< No. Surat Kontrol (bisa null)
+                                    rskasir.getString("no_surat"),     // <<< No. Surat Kontrol (bisa null)
+                                    rskasir.getString("tgl_rencana")   // <<< Tgl Rencana Kontrol
                                 };
                                 i++;
                                 SwingUtilities.invokeLater(() -> tabModekasir.addRow(row));
